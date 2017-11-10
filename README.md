@@ -49,5 +49,6 @@ pip install beautifulsoup4
 To run the script:
 ```
 python foodPriceScraper.py --startDate 01/11/2017 --endDate 04/11/2017
+```
 
 Where **startDate** is the start date and **endDate** is the end date of interval of time to query. All data between this interval is extracted into csv file.
