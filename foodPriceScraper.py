@@ -19,20 +19,21 @@ def queryPrices( queryURL, paramsValues,headersValues,elementList,date2Filter ):
   currentIndex=0
   for row in table.findAll("tr"):
     cells = row.findAll('td')
-    #This is because exists rowspan, if not use the previous category
-    if len(cells)==5:
-      category=cells[0].find(text=True)
-      product=cells[1].find(text=True)
-      minPrice=cells[2].find(text=True)
-      avgPrice=cells[3].find(text=True)
-      maxPrice=cells[4].find(text=True)
-    else:
-      product=cells[0].find(text=True)
-      minPrice=cells[1].find(text=True)
-      avgPrice=cells[2].find(text=True)
-      maxPrice=cells[3].find(text=True)
-    element=[date2Filter,category,product,minPrice,avgPrice,maxPrice]
-    elementList.append(element)
+    if (currentIndex > 0):
+      #This is because exists rowspan, if not use the previous category
+      if len(cells)==5:
+        category=cells[0].find(text=True)
+        product=cells[1].find(text=True)
+        minPrice=cells[2].find(text=True)
+        avgPrice=cells[3].find(text=True)
+        maxPrice=cells[4].find(text=True)
+      else:
+        product=cells[0].find(text=True)
+        minPrice=cells[1].find(text=True)
+        avgPrice=cells[2].find(text=True)
+        maxPrice=cells[3].find(text=True)
+      element=[date2Filter,category,product,minPrice,avgPrice,maxPrice]
+      elementList.append(element)
     currentIndex=currentIndex+1
   return
 #Current directory where is located the script
@@ -78,6 +79,8 @@ formData['productos[11]']='0230'#Zanahoria
 startDate = datetime.strptime(args.startDate, "%d/%m/%Y")
 endDate = datetime.strptime(args.endDate,"%d/%m/%Y")
 priceList=[]
+headerList=["Fecha","Producto","Variedad","Precio Mínimo","Precio Promedio","Precio Máximo"]
+priceList.append(headerList)
 while startDate <= endDate:
   currentDate = startDate.strftime('%d/%m/%Y')
   print ("Generating dataset of %s" %  currentDate)
