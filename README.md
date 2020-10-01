@@ -52,3 +52,20 @@ python foodPriceScraper.py --startDate 01/11/2017 --endDate 04/11/2017
 ```
 
 Where **startDate** is the start date and **endDate** is the end date of interval of time to query. All data between this interval is extracted into csv file.
+
+Currently it only extracts the minimum, average and maximum price of the following foods:
+
+- Potato
+- Lemon
+- Oil
+- Garlic
+- Celery
+- Rice
+- Sugar
+- Onion
+- Eggs
+- Milk
+- Chicken
+- Tomato
+- Cassava
+- Carrot
